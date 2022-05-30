@@ -1,4 +1,4 @@
-module github.com/kkdai/youtube/v2
+module github.com/parallax4/youtube/v2
 
 go 1.17
 
