@@ -22,6 +22,8 @@ type Client struct {
 
 	// playerCache caches the JavaScript code of a player response
 	playerCache playerCache
+	
+	EmbeddableOnly bool
 }
 
 // GetVideo fetches video metadata
@@ -56,6 +58,9 @@ func (c *Client) videoFromID(ctx context.Context, id string) (*Video, error) {
 
 	// If the uploader has disabled embedding the video on other sites, parse video page
 	if err == ErrNotPlayableInEmbed {
+		if c.EmbeddableOnly {
+			return nil, err
+		}
 		// additional parameters are required to access clips with sensitiv content
 		html, err := c.httpGetBodyBytes(ctx, "https://www.youtube.com/watch?v="+id+"&bpctr=9999999999&has_verified=1")
 		if err != nil {
