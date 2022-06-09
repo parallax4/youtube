@@ -11,6 +11,8 @@ var videoRegexpList = []*regexp.Regexp{
 	regexp.MustCompile(`([^"&?/=%]{11})`),
 }
 
+var ErrorVideoIDInvalidLength = errors.New("invalid video ID length")
+
 // ExtractVideoID extracts the videoID from the given string
 func ExtractVideoID(videoID string) (string, error) {
 	if strings.Contains(videoID, "youtu") || strings.ContainsAny(videoID, "\"?&/<%=") {
@@ -25,8 +27,8 @@ func ExtractVideoID(videoID string) (string, error) {
 	if strings.ContainsAny(videoID, "?&/<%=") {
 		return "", ErrInvalidCharactersInVideoID
 	}
-	if len(videoID) < 10 {
-		return "", ErrVideoIDMinLength
+	if len(videoID) != 11 {
+		return "", ErrorVideoIDInvalidLength
 	}
 
 	return videoID, nil
