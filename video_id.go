@@ -1,6 +1,7 @@
 package youtube
 
 import (
+	"errors"
 	"regexp"
 	"strings"
 )
