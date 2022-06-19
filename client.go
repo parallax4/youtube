@@ -31,6 +31,11 @@ func (c *Client) GetVideo(url string) (*Video, error) {
 	return c.GetVideoContext(context.Background(), url)
 }
 
+// GetVideoFromID fetches video metadata by ID
+func (c *Client) GetVideoFromID(id string) (*Video, error) {
+	return c.videoFromID(context.Background(), url)
+}
+
 // GetVideoContext fetches video metadata with a context
 func (c *Client) GetVideoContext(ctx context.Context, url string) (*Video, error) {
 	id, err := ExtractVideoID(url)
