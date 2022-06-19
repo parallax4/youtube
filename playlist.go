@@ -32,7 +32,7 @@ type PlaylistEntry struct {
 	Thumbnails Thumbnails
 }
 
-func extractPlaylistID(url string) (string, error) {
+func ExtractPlaylistID(url string) (string, error) {
 	if playlistIDRegex.Match([]byte(url)) {
 		return url, nil
 	}
