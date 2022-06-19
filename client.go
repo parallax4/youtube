@@ -201,13 +201,26 @@ func (c *Client) GetPlaylist(url string) (*Playlist, error) {
 	return c.GetPlaylistContext(context.Background(), url)
 }
 
+// GetPlaylistFromID fetches playlist by ID
+func (c *Client) GetPlaylistFromID(id string) (*Playlist, error) {
+	ctx := context.Background()
+	data := prepareInnertubePlaylistData(id, false, webClient)
+	body, err := c.httpPostBodyBytes(ctx, "https://www.youtube.com/youtubei/v1/browse?key="+webClient.key, data)
+	if err != nil {
+		return nil, err
+	}
+
+	p := &Playlist{ID: id}
+	return p, p.parsePlaylistInfo(ctx, c, body)
+}
+
 // GetPlaylistContext fetches playlist metadata, with a context, along with a list of Videos, and some basic information
 // for these videos. Playlist entries cannot be downloaded, as they lack all the required metadata, but
 // can be used to enumerate all IDs, Authors, Titles, etc.
 func (c *Client) GetPlaylistContext(ctx context.Context, url string) (*Playlist, error) {
-	id, err := extractPlaylistID(url)
+	id, err := ExtractPlaylistID(url)
 	if err != nil {
-		return nil, fmt.Errorf("extractPlaylistID failed: %w", err)
+		return nil, fmt.Errorf("ExtractPlaylistID failed: %w", err)
 	}
 
 	data := prepareInnertubePlaylistData(id, false, webClient)
