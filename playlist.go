@@ -2,11 +2,12 @@ package youtube
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/goccy/go-json"
 
 	sjson "github.com/bitly/go-simplejson"
 )

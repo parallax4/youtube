@@ -1,11 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io"
 	"strings"
+
+	"github.com/goccy/go-json"
 
 	"github.com/spf13/pflag"
 )

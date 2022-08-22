@@ -1,7 +1,6 @@
 package youtube
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"regexp"
@@ -9,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/goccy/go-json"
 )
 
 type Video struct {

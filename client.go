@@ -3,7 +3,7 @@ package youtube
 import (
 	"bytes"
 	"context"
-	"encoding/json"
+	"github.com/goccy/go-json"
 	"fmt"
 	"io"
 	"log"
@@ -22,7 +22,7 @@ type Client struct {
 
 	// playerCache caches the JavaScript code of a player response
 	playerCache playerCache
-	
+
 	EmbeddableOnly bool
 }
 

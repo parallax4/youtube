@@ -1,6 +1,6 @@
 module github.com/parallax4/youtube/v2
 
-go 1.17
+go 1.18
 
 require (
 	github.com/bitly/go-simplejson v0.5.0
@@ -23,6 +23,7 @@ require (
 	github.com/dlclark/regexp2 v1.7.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
+	github.com/goccy/go-json v0.9.11 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
