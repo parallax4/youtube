@@ -23,6 +23,7 @@ type Video struct {
 	Thumbnails      Thumbnails
 	DASHManifestURL string // URI of the DASH manifest file
 	HLSManifestURL  string // URI of the HLS manifest file
+	Live bool
 }
 
 const dateFormat = "2006-01-02"
@@ -96,6 +97,7 @@ func (v *Video) extractDataFromPlayerResponse(prData playerResponseData) error {
 	v.Description = prData.VideoDetails.ShortDescription
 	v.Author = prData.VideoDetails.Author
 	v.Thumbnails = prData.VideoDetails.Thumbnail.Thumbnails
+	v.Live = prData.VideoDetails.IsLiveContent
 
 	if seconds, _ := strconv.Atoi(prData.Microformat.PlayerMicroformatRenderer.LengthSeconds); seconds > 0 {
 		v.Duration = time.Duration(seconds) * time.Second
